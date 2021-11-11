@@ -1,53 +1,71 @@
 import 'package:f/emulators.dart';
 import 'package:f/f.dart';
 
-main(List<String> args) async {
+void main(List<String> args) {
   if (args.isNotEmpty) {
     final cmd = args.first;
 
     switch (cmd) {
       case "c":
-        return await create(args);
+        create(args);
+        return;
       case "a":
-        return await analyze(args);
+        analyze(args);
+        return;
       case "as":
-        return await assemble(args);
+        assemble(args);
+        return;
       case "at":
-        return await attach(args);
+        attach(args);
+        return;
       case "b":
-        return await build(args);
+        build(args);
+        return;
       case "bs":
-        return await buildSplitPerAbi(args);
+        buildSplitPerAbi(args);
+        return;
       case "ch":
-        return await channel(args);
+        channel(args);
+        return;
       case "dev":
-        return await devices(args);
+        devices(args);
+        return;
       case "doc":
-        return await doctor();
+        doctor();
+        return;
       case "down":
-        return await downgrade();
+        downgrade();
+        return;
       case "drv":
-        return await drive();
+        drive();
+        return;
       case "e":
-        return await emulators();
+        emulators();
+        return;
       case "f":
-        return await format(args);
+        format(args);
+        return;
       case "i":
-        return await install(args);
+        install(args);
+        return;
       case "l":
-        return await logs();
+        logs();
+        return;
       case "r":
-        return await run(args);
+        run(args);
+        return;
       case "rp":
-        return await runProfile(args);
+        runProfile(args);
+        return;
       case "rr":
-        return await runRelease(args);
+        runRelease(args);
+        return;
       case "t":
-        return await test(args);
+        test(args);
+        return;
       case "up":
-        return await upgrade();
-      default:
-        break;
+        upgrade();
+        return;
     }
   }
 

@@ -1,5 +1,5 @@
 import 'shell.dart';
 
 Future<void> downgrade() async {
-  await shell.run('flutter downgrade');
+  await shell.runExecutableArguments('flutter downgrade', []);
 }

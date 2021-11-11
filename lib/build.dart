@@ -3,10 +3,10 @@ import 'shell.dart';
 
 Future<void> build(List<String> args) async {
   String arg = arguments(args);
-  await shell.run('flutter build $arg');
+  await shell.runExecutableArguments('flutter build $arg', []);
 }
 
 Future<void> buildSplitPerAbi(List<String> args) async {
   String arg = arguments(args);
-  await shell.run('flutter build --split-per-abi $arg');
+  await shell.runExecutableArguments('flutter build --split-per-abi $arg', []);
 }

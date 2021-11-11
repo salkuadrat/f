@@ -3,5 +3,5 @@ import 'shell.dart';
 
 Future<void> test(List<String> args) async {
   String arg = arguments(args);
-  await shell.run('flutter test $arg');
+  await shell.runExecutableArguments('flutter test $arg', []);
 }

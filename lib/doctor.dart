@@ -1,5 +1,5 @@
 import 'shell.dart';
 
 Future<void> doctor() async {
-  await shell.run('flutter doctor');
+  await shell.runExecutableArguments('flutter doctor', []);
 }

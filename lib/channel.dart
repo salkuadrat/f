@@ -3,5 +3,5 @@ import 'shell.dart';
 
 Future<void> channel(List<String> args) async {
   String arg = arguments(args);
-  await shell.run('flutter channel $arg');
+  await shell.runExecutableArguments('flutter channel $arg', []);
 }

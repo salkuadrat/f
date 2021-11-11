@@ -44,7 +44,7 @@ Future<void> create(List<String> args) async {
   String project = params.first;
   String command = 'flutter create$name$org$android$ios $project';
 
-  await shell.run(command);
+  await shell.runExecutableArguments(command, []);
 
   params.removeAt(0);
 
@@ -52,7 +52,7 @@ Future<void> create(List<String> args) async {
 
   if (params.isNotEmpty) {
     for (String dep in params) {
-      await shell.run('flutter pub add $dep');
+      await shell.runExecutableArguments('flutter pub add $dep', []);
     }
   }
 

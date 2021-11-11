@@ -1,5 +1,5 @@
 import 'shell.dart';
 
 Future<void> drive() async {
-  await shell.run('flutter drive');
+  await shell.runExecutableArguments('flutter drive', []);
 }
