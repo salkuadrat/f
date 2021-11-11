@@ -28,9 +28,9 @@ f c myapp path intl http provider
 cd myapp 
 ```
 
-The command above will automatically create your `myapp` project, and then automatically install all the required dependencies.
+The command above will automatically create your `myapp` project, then automatically install all the required dependencies.
 
-Feel free to add as much predefined dependencies as you want.
+Feel free to add as many dependencies as you want.
 
 You can also pass other arguments, such as project name, the organization name, or to specify the programming language used for the native platform:
 
