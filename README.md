@@ -12,12 +12,14 @@ pub global activate f
 
 ## Create new project 
 
-Use this f command to create a Flutter project 
+Use this f command to create a Flutter project:
 
 ```bash 
 f c myapp
 cd myapp
 ```
+
+It's similar as using command `flutter create myapp`.
 
 To create a new project with some predefined dependencies, you can use list the dependencies after your project name like this:
 
