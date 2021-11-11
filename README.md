@@ -47,7 +47,7 @@ To run a Flutter project, you can use this command:
 f r
 ```
 
-It's the same as using command `flutter run`. 
+It's similar with using command `flutter run`. 
 
 To run project as `flutter run --profile`, use:
 
