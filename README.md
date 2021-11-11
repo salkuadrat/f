@@ -19,9 +19,9 @@ f c myapp
 cd myapp
 ```
 
-It's similar as using command `flutter create myapp`.
+It's similar with using command `flutter create myapp`.
 
-To create a new project with some predefined dependencies, you can use list the dependencies after your project name like this:
+To create a Flutter project with some predefined dependencies, you can use list the dependencies after your project name like this:
 
 ```bash
 f c myapp path intl http provider 
