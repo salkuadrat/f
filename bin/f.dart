@@ -10,41 +10,41 @@ main(List<String> args) async {
         return await create(args);
       case "a":
         return await analyze(args);
-      case "as": 
+      case "as":
         return await assemble(args);
-      case "at": 
+      case "at":
         return await attach(args);
       case "b":
         return await build(args);
-      case "bs": 
+      case "bs":
         return await buildSplitPerAbi(args);
-      case "ch": 
+      case "ch":
         return await channel(args);
-      case "dev": 
+      case "dev":
         return await devices(args);
-      case "doc": 
+      case "doc":
         return await doctor();
-      case "down": 
+      case "down":
         return await downgrade();
-      case "drv": 
+      case "drv":
         return await drive();
-      case "e": 
+      case "e":
         return await emulators();
-      case "f": 
+      case "f":
         return await format(args);
-      case "i": 
-        return await install(args); 
-      case "l": 
+      case "i":
+        return await install(args);
+      case "l":
         return await logs();
-      case "r": 
+      case "r":
         return await run(args);
-      case "rp": 
+      case "rp":
         return await runProfile(args);
-      case "rr": 
+      case "rr":
         return await runRelease(args);
-      case "t": 
+      case "t":
         return await test(args);
-      case "up": 
+      case "up":
         return await upgrade();
       default:
         break;
