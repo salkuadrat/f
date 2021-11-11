@@ -35,7 +35,7 @@ Feel free to add as many dependencies as you want.
 You can also pass other arguments, such as project name, the organization name, or to specify the programming language used for the native platform:
 
 ```bash 
-f c --p myapp --org dev.flutter --a kotlin -i swift myapp path intl http provider
+f c --p myapp --org dev.flutter --a kotlin --i swift myapp path intl http provider
 cd myapp
 ```
 
