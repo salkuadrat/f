@@ -12,7 +12,7 @@ pub global activate f
 
 ## Create new project 
 
-Use this command to create a new Flutter project 
+Use this f command to create a Flutter project 
 
 ```bash 
 f c myapp
