@@ -27,6 +27,9 @@ void main(List<String> args) {
       case "ch":
         channel(args);
         return;
+      case "cl":
+        clean();
+        return;
       case "dev":
         devices(args);
         return;

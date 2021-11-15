@@ -3,6 +3,7 @@ export 'assemble.dart';
 export 'attach.dart';
 export 'build.dart';
 export 'channel.dart';
+export 'clean.dart';
 export 'create.dart';
 export 'devices.dart';
 export 'doctor.dart';

@@ -1,3 +1,7 @@
+## 0.0.6 
+
+- add "f cl" command
+
 ## 0.0.5
 
 - handle double run

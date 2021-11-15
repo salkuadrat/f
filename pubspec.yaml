@@ -1,6 +1,6 @@
 name: f
-description: A simple shortcut, command line interface (CLI) for a lazy (a.k.a effective) Flutter developer in order to increase productivity and happiness.
-version: 0.0.5
+description: A simple shortcut, command line interface (CLI) for Flutter to increase productivity and happiness.
+version: 0.0.6
 homepage: https://github.com/salkuadrat/f
 repository: https://github.com/salkuadrat/f
 

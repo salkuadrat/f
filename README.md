@@ -1,10 +1,10 @@
 # f 
 
-A simple shortcut, command line interface (CLI) for a lazy (a.k.a effective) Flutter developer in order to increase productivity and happiness.
+A simple shortcut, command line interface (CLI) for Flutter to increase productivity and happiness.
 
 ## Installation 
 
-Activate f CLI from your terminal using this command.
+Use this command to activate f CLI from your terminal.
 
 ```bash 
 pub global activate f
@@ -16,16 +16,14 @@ Use this f command to create a Flutter project:
 
 ```bash 
 f c myapp
-cd myapp
 ```
 
-It's similar with using command `flutter create myapp`.
+It's similar to using command `flutter create myapp`.
 
 To create a Flutter project with some predefined dependencies, you can list the dependencies after your project name like this:
 
 ```bash
 f c myapp path intl http provider 
-cd myapp 
 ```
 
 The above command will automatically create `myapp` project in the `myapp` directory, then automatically install all the required dependencies (in this example: path, intl, http, and provider).
@@ -36,7 +34,6 @@ You can also pass other arguments, such as project name, the organization name, 
 
 ```bash 
 f c --p myapp --org dev.flutter --a kotlin --i swift myapp path intl http provider
-cd myapp
 ```
 
 ## Run Project 
@@ -47,7 +44,7 @@ To run a Flutter project, you can use this command:
 f r
 ```
 
-It's similar with using command `flutter run`. 
+It's similar to using command `flutter run`. 
 
 To run project as `flutter run --profile`, use:
 
@@ -93,6 +90,10 @@ The list of other f commands that you can use to increase productivity with Flut
   <tr>
     <td><code>f ch CHANNEL_NAME</code></td>
     <td>List or switch flutter channels.<br>Alias of <code>flutter channel</code></td>
+  </tr>
+  <tr>
+    <td><code>f cl</code></td>
+    <td>Clean a flutter project.<br>Alias of <code>flutter clean</code></td>
   </tr>
   <tr>
     <td><code>f dev -d DEVICE_ID</code></td>
