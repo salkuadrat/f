@@ -1,5 +1,5 @@
-import 'shell.dart';
+import 'start.dart';
 
-Future<void> clean() async {
-  await shell.runExecutableArguments('flutter clean', []);
+void clean() {
+  start('flutter', ['clean']);
 }

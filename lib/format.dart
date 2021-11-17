@@ -1,7 +1,5 @@
-import 'arguments.dart';
-import 'shell.dart';
+import 'start.dart';
 
-Future<void> format(List<String> args) async {
-  String arg = arguments(args);
-  await shell.runExecutableArguments('flutter format $arg', []);
+void format(List<String> args) {
+  start('flutter', ['format', ...args]);
 }

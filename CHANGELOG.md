@@ -1,3 +1,7 @@
+## 0.0.7 
+
+- Change shell using Process
+
 ## 0.0.6 
 
 - add "f cl" command

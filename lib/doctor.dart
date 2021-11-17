@@ -1,5 +1,6 @@
-import 'shell.dart';
+import 'dart:async';
+import 'start.dart';
 
-Future<void> doctor() async {
-  await shell.runExecutableArguments('flutter doctor', []);
+void doctor() {
+  start('flutter', ['doctor']);
 }

@@ -1,5 +1,5 @@
-import 'shell.dart';
+import 'start.dart';
 
-Future<void> downgrade() async {
-  await shell.runExecutableArguments('flutter downgrade', []);
+void downgrade() {
+  start('flutter', ['downgrade']);
 }

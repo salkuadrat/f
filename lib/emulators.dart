@@ -1,5 +1,5 @@
-import 'shell.dart';
+import 'start.dart';
 
-Future<void> emulators() async {
-  await shell.runExecutableArguments('flutter emulators', []);
+void emulators() {
+  start('flutter', ['emulators']);
 }

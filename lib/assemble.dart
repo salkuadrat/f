@@ -1,7 +1,5 @@
-import 'arguments.dart';
-import 'shell.dart';
+import 'start.dart';
 
-Future<void> assemble(List<String> args) async {
-  String arg = arguments(args);
-  await shell.runExecutableArguments('flutter assemble $arg', []);
+void assemble(List<String> args) {
+  start('flutter', ['assemble', ...args]);
 }

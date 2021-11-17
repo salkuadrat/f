@@ -1,17 +1,13 @@
-import 'arguments.dart';
-import 'shell.dart';
+import 'start.dart';
 
-Future<void> run(List<String> args) async {
-  String arg = arguments(args);
-  await shell.runExecutableArguments('flutter run $arg', []);
+void run(List<String> args) {
+  start('flutter', ['run', ...args]);
 }
 
-Future<void> runProfile(List<String> args) async {
-  String arg = arguments(args);
-  await shell.runExecutableArguments('flutter run --profile $arg', []);
+void runProfile(List<String> args) {
+  start('flutter', ['run', '--profile', ...args]);
 }
 
-Future<void> runRelease(List<String> args) async {
-  String arg = arguments(args);
-  await shell.runExecutableArguments('flutter run --release $arg', []);
+void runRelease(List<String> args) {
+  start('flutter', ['run', '--release', ...args]);
 }

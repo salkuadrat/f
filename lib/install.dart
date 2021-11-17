@@ -1,7 +1,5 @@
-import 'arguments.dart';
-import 'shell.dart';
+import 'start.dart';
 
-Future<void> install(List<String> args) async {
-  String arg = arguments(args);
-  await shell.runExecutableArguments('flutter install $arg', []);
+void install(List<String> args) {
+  start('flutter', ['install', ...args]);
 }

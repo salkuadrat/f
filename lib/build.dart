@@ -1,12 +1,9 @@
-import 'arguments.dart';
-import 'shell.dart';
+import 'start.dart';
 
-Future<void> build(List<String> args) async {
-  String arg = arguments(args);
-  await shell.runExecutableArguments('flutter build $arg', []);
+void build(List<String> args) {
+  start('flutter', ['build', ...args]);
 }
 
-Future<void> buildSplitPerAbi(List<String> args) async {
-  String arg = arguments(args);
-  await shell.runExecutableArguments('flutter build --split-per-abi $arg', []);
+void buildSplitPerAbi(List<String> args) {
+  start('flutter', ['build', '--split-per-abi', ...args]);
 }

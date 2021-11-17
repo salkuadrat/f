@@ -1,7 +1,5 @@
-import 'arguments.dart';
-import 'shell.dart';
+import 'start.dart';
 
-Future<void> attach(List<String> args) async {
-  String arg = arguments(args);
-  await shell.runExecutableArguments('flutter attach $arg', []);
+void attach(List<String> args) {
+  start('flutter', ['attach', ...args]);
 }

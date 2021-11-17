@@ -1,5 +1,5 @@
-import 'shell.dart';
+import 'start.dart';
 
-Future<void> logs() async {
-  await shell.runExecutableArguments('flutter logs', []);
+void logs() {
+  start('flutter', ['logs']);
 }

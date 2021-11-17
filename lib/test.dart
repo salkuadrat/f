@@ -1,7 +1,5 @@
-import 'arguments.dart';
-import 'shell.dart';
+import 'start.dart';
 
-Future<void> test(List<String> args) async {
-  String arg = arguments(args);
-  await shell.runExecutableArguments('flutter test $arg', []);
+void test(List<String> args) {
+  start('flutter', ['test', ...args]);
 }

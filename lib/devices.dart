@@ -1,7 +1,5 @@
-import 'arguments.dart';
-import 'shell.dart';
+import 'start.dart';
 
-Future<void> devices(List<String> args) async {
-  String arg = arguments(args);
-  await shell.runExecutableArguments('flutter devices $arg', []);
+void devices(List<String> args) {
+  start('flutter', ['devices', ...args]);
 }

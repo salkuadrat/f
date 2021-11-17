@@ -1,5 +1,5 @@
-import 'shell.dart';
+import 'start.dart';
 
-Future<void> drive() async {
-  await shell.runExecutableArguments('flutter drive', []);
+void drive() {
+  start('flutter', ['drive']);
 }

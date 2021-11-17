@@ -4,6 +4,9 @@ import 'package:f/f.dart';
 void main(List<String> args) {
   if (args.isNotEmpty) {
     final cmd = args.first;
+    List<String> arguments = args.toList();
+    arguments.removeAt(0);
+    args = arguments;
 
     switch (cmd) {
       case "c":

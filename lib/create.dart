@@ -1,18 +1,20 @@
-import 'shell.dart';
+import 'dart:io';
 
-Future<void> create(List<String> args) async {
+void create(List<String> args) {
   List<String> params = args.toList();
-  params.removeAt(0);
 
   String org = '';
   String android = '';
   String ios = '';
   String name = '';
 
+  List<String> fcargs = [];
+
   if (params.contains('--p')) {
     int idx = params.indexOf('--p');
     name = params[idx + 1];
-    name = ' --project-name $name';
+    fcargs.add('--project-name');
+    fcargs.add(name);
     params.removeAt(idx);
     params.removeAt(idx);
   }
@@ -20,7 +22,8 @@ Future<void> create(List<String> args) async {
   if (params.contains('--org')) {
     int idx = params.indexOf('--org');
     org = params[idx + 1];
-    org = ' --org $org';
+    fcargs.add('--org');
+    fcargs.add(org);
     params.removeAt(idx);
     params.removeAt(idx);
   }
@@ -28,7 +31,8 @@ Future<void> create(List<String> args) async {
   if (params.contains('--a')) {
     int idx = params.indexOf('--a');
     android = params[idx + 1];
-    android = ' --android-language $android';
+    fcargs.add('--android-language');
+    fcargs.add(android);
     params.removeAt(idx);
     params.removeAt(idx);
   }
@@ -36,31 +40,32 @@ Future<void> create(List<String> args) async {
   if (params.contains('--i')) {
     int idx = params.indexOf('--i');
     ios = params[idx + 1];
-    ios = ' --ios-language $ios';
+    fcargs.add('--ios-language');
+    fcargs.add(ios);
     params.removeAt(idx);
     params.removeAt(idx);
   }
 
   String project = params.first;
-  String command = 'flutter create$name$org$android$ios $project';
+  fcargs.add(project);
 
-  await shell.runExecutableArguments(command, []);
+  final res = Process.runSync('flutter', ['create', ...fcargs], runInShell: true);
+  print(res.stdout);
 
   params.removeAt(0);
 
-  shell = shell.pushd(project);
-
   if (params.isNotEmpty) {
     for (String dep in params) {
-      await shell.runExecutableArguments('flutter pub add $dep', []);
+      print('Install dependency $dep...');
+      String cmd = 'cd $project & flutter pub add $dep';
+      Process.runSync(cmd, [], runInShell: true);
     }
   }
 
   print('');
   print('All done!');
-  print('In order to run your application, type:');
+  print('Use this command to run your application:');
   print('');
   print('  \$ cd $project');
   print('  \$ f r');
-  print('');
 }

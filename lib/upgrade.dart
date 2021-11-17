@@ -1,5 +1,5 @@
-import 'shell.dart';
+import 'start.dart';
 
-Future<void> upgrade() async {
-  await shell.runExecutableArguments('flutter upgrade', []);
+void upgrade() {
+  start('flutter', ['upgrade']);
 }
