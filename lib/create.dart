@@ -49,7 +49,11 @@ void create(List<String> args) {
   String project = params.first;
   fcargs.add(project);
 
-  final res = Process.runSync('flutter', ['create', ...fcargs], runInShell: true);
+  final res = Process.runSync(
+    'flutter',
+    ['create', ...fcargs],
+    runInShell: true,
+  );
   print(res.stdout);
 
   params.removeAt(0);
@@ -68,4 +72,6 @@ void create(List<String> args) {
   print('');
   print('  \$ cd $project');
   print('  \$ f r');
+
+  exit(0);
 }

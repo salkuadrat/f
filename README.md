@@ -58,18 +58,28 @@ To run project as `flutter run --release`, use:
 f rr
 ```
 
+You can combine `-v` at the end of each command to show additional diagnostic informations.
+
+```bash
+f r -v
+```
+
 ## Build Project 
 
 To build executable for a Flutter project, you can use this command:
 
 ```bash
-f b
+f b apk
+f b arr
+f b appbundle
+f b bundle 
+f b web
 ```
 
 To build apk with split per abi, use this:
 
 ```bash
-f bs
+f bs apk
 ```
 
 ## Other Commands 
