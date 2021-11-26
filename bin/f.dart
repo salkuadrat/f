@@ -66,6 +66,9 @@ void main(List<String> args) {
       case "rr":
         runRelease(args);
         return;
+      case "s":
+        starter(args);
+        return;
       case "t":
         test(args);
         return;

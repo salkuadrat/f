@@ -13,5 +13,6 @@ export 'format.dart';
 export 'install.dart';
 export 'logs.dart';
 export 'run.dart';
+export 'starter.dart';
 export 'test.dart';
 export 'upgrade.dart';

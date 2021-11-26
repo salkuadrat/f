@@ -1,3 +1,24 @@
+## 0.1.7
+
+- Add "f s" starter command for bloc, cubit, getx, provider and riverpod
+
+## 0.1.6
+
+- Fixing command "f c"
+
+## 0.1.5
+
+- Double run on windows is error from dark-sdk (https://github.com/dart-lang/pub/issues/2934)
+- PR to solve this has been added (https://github.com/dart-lang/pub/pull/3055)
+
+## 0.1.4
+
+- Add forceExitForWindows
+
+## 0.1.3 
+
+- Capture process.exitCode to handle double run
+
 ## 0.1.2
 
 - Update "f b" and "f bs" command
