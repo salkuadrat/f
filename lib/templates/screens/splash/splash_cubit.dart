@@ -4,11 +4,13 @@ import 'dart:io';
 void splashCubit(String project, String dir) {
   File('$dir/splash.dart').writeAsStringSync('''
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 import 'package:$project/config/config.dart';
+import 'package:$project/modules/auth/auth.dart';
 import 'package:$project/routes/routes.dart';
-import 'package:$project/utils/navigation.dart';
+import 'package:$project/utils/utils.dart';
 import 'package:$project/widgets/logo.dart';
 
 class Splash extends StatefulWidget {
@@ -31,13 +33,16 @@ class _SplashState extends State<Splash> {
     // Do some necessary things opening Home Screen, such as:
     //
     // Loading data from Shared Preferences
-    // Loading initil data from backend
+    // Loading initial data from backend
     // Initializes states
     // etc..
 
     // dummy delay to show splash screen
     // remove this in real application
     await Future.delayed(const Duration(seconds: 2));
+
+    // check Authentication status
+    await context.read<AuthCubit>().init();
 
     // Show Home Screen
     context.replace(Routes.home);

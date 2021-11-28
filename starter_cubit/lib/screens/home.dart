@@ -6,8 +6,7 @@ import 'package:starter_cubit/config/config.dart';
 import 'package:starter_cubit/modules/auth/auth.dart';
 import 'package:starter_cubit/modules/home/home.dart';
 import 'package:starter_cubit/routes/routes.dart';
-import 'package:starter_cubit/utils/navigation.dart';
-import 'package:starter_cubit/utils/snackbar.dart';
+import 'package:starter_cubit/utils/utils.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);

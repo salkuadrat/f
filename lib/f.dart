@@ -10,6 +10,7 @@ export 'doctor.dart';
 export 'downgrade.dart';
 export 'drive.dart';
 export 'format.dart';
+export 'module.dart';
 export 'install.dart';
 export 'logs.dart';
 export 'run.dart';

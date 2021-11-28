@@ -1,6 +1,7 @@
 ## 0.1.7
 
 - Add "f s" starter command for bloc, cubit, getx, provider and riverpod
+- Add "f m" command to generate a new module files
 
 ## 0.1.6
 

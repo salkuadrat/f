@@ -3,8 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 
 import 'package:starter_provider/modules/auth/auth.dart';
-import 'package:starter_provider/utils/navigation.dart';
-import 'package:starter_provider/utils/snackbar.dart';
+import 'package:starter_provider/utils/utils.dart';
 import 'package:starter_provider/widgets/buttons.dart';
 import 'package:starter_provider/widgets/logo.dart';
 
@@ -20,6 +19,12 @@ class Login extends StatelessWidget {
     final auth = context.read<AuthState>();
     final username = _ucontroller.text;
     final password = _pcontroller.text;
+    final empty = username.isEmpty || password.isEmpty;
+
+    if (empty) {
+      context.snackbar('Wrong username or password.');
+      return;
+    }
 
     await auth.login(username, password);
 

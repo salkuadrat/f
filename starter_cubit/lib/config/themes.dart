@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:starter_cubit/config/config.dart';
-import 'package:starter_cubit/utils/theme.dart';
+import 'package:starter_cubit/utils/utils.dart';
 
 ThemeData appTheme = createTheme(
   brightness: Brightness.light,

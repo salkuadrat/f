@@ -24,8 +24,26 @@ Future<void> starter(List<String> args) async {
     params.removeAt(idx);
   }
 
+  if (params.contains('-p')) {
+    int idx = params.indexOf('-p');
+    name = params[idx + 1];
+    fargs.add('--project-name');
+    fargs.add(name);
+    params.removeAt(idx);
+    params.removeAt(idx);
+  }
+
   if (params.contains('--org')) {
     int idx = params.indexOf('--org');
+    org = params[idx + 1];
+    fargs.add('--org');
+    fargs.add(org);
+    params.removeAt(idx);
+    params.removeAt(idx);
+  }
+
+  if (params.contains('-org')) {
+    int idx = params.indexOf('-org');
     org = params[idx + 1];
     fargs.add('--org');
     fargs.add(org);
@@ -42,8 +60,26 @@ Future<void> starter(List<String> args) async {
     params.removeAt(idx);
   }
 
+  if (params.contains('-a')) {
+    int idx = params.indexOf('-a');
+    android = params[idx + 1];
+    fargs.add('--android-language');
+    fargs.add(android);
+    params.removeAt(idx);
+    params.removeAt(idx);
+  }
+
   if (params.contains('--i')) {
     int idx = params.indexOf('--i');
+    ios = params[idx + 1];
+    fargs.add('--ios-language');
+    fargs.add(ios);
+    params.removeAt(idx);
+    params.removeAt(idx);
+  }
+
+  if (params.contains('-i')) {
+    int idx = params.indexOf('-i');
     ios = params[idx + 1];
     fargs.add('--ios-language');
     fargs.add(ios);
@@ -216,6 +252,7 @@ void _template(String project, String template, String org) {
   _file(project, '/lib/utils/prefs.dart');
   _file(project, '/lib/utils/snackbar.dart');
   _file(project, '/lib/utils/theme.dart');
+  _file(project, '/lib/utils/utils.dart');
 
   t.utils(project);
 

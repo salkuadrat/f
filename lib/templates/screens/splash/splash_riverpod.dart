@@ -8,7 +8,7 @@ import 'package:gap/gap.dart';
 
 import 'package:$project/config/config.dart';
 import 'package:$project/routes/routes.dart';
-import 'package:$project/utils/navigation.dart';
+import 'package:$project/utils/utils.dart';
 import 'package:$project/widgets/logo.dart';
 
 class Splash extends StatefulWidget {
@@ -31,7 +31,7 @@ class _SplashState extends State<Splash> {
     // Do some necessary things opening Home Screen, such as:
     //
     // Loading data from Shared Preferences
-    // Loading initil data from backend
+    // Loading initial data from backend
     // Initializes states
     // etc..
 

@@ -1,8 +1,10 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 
 import 'package:starter_getx/models/user.dart';
 import 'package:starter_getx/modules/auth/auth.dart';
-import 'package:starter_getx/utils/prefs.dart';
+import 'package:starter_getx/utils/utils.dart';
 
 enum AuthStatus { initial, authenticated, notauthenticated, failed }
 
@@ -10,10 +12,12 @@ class AuthController extends GetxController {
   final AuthService _service;
 
   final Rx<User?> _user = Rx<User?>(null);
+  final Rx<String?> _token = Rx<String?>(null);
   final Rx<AuthStatus> _status = Rx<AuthStatus>(AuthStatus.initial);
   final _isLoading = false.obs;
 
   User? get user => _user.value;
+  String? get token => _token.value;
   AuthStatus get status => _status.value;
 
   bool get isLoading => _isLoading.value;
@@ -21,7 +25,20 @@ class AuthController extends GetxController {
 
   AuthController(this._service);
 
-  Future<void> register(String username, String email, String password) async {
+  Future init() async {
+    final user = await Prefs.getString('user');
+    final token = await Prefs.getString('token');
+
+    if (user != null && token != null) {
+      _status.value = AuthStatus.authenticated;
+      _user.value = User.fromJson(jsonDecode(user));
+      _token.value = token;
+    } else {
+      _status.value = AuthStatus.notauthenticated;
+    }
+  }
+
+  Future register(String username, String email, String password) async {
     _isLoading.value = true;
 
     try {
@@ -30,11 +47,11 @@ class AuthController extends GetxController {
       if (data is Map && data.containsKey('token')) {
         final user = User.fromJson(data);
 
-        await Prefs.setInt('user_id', data['id']);
-        await Prefs.setString('username', data['username']);
+        await Prefs.setString('user', jsonEncode(user.toJson()));
         await Prefs.setString('token', data['token']);
 
         _status.value = AuthStatus.authenticated;
+        _token.value = data['token'];
         _user.value = user;
       } else {
         _status.value = AuthStatus.notauthenticated;
@@ -46,7 +63,7 @@ class AuthController extends GetxController {
     _isLoading.value = false;
   }
 
-  Future<void> login(String username, String password) async {
+  Future login(String username, String password) async {
     _isLoading.value = true;
 
     try {
@@ -55,11 +72,11 @@ class AuthController extends GetxController {
       if (data is Map && data.containsKey('token')) {
         final user = User.fromJson(data);
 
-        await Prefs.setInt('user_id', data['id']);
-        await Prefs.setString('username', data['username']);
+        await Prefs.setString('user', jsonEncode(user.toJson()));
         await Prefs.setString('token', data['token']);
 
         _status.value = AuthStatus.authenticated;
+        _token.value = data['token'];
         _user.value = user;
       } else {
         _status.value = AuthStatus.notauthenticated;
@@ -71,11 +88,10 @@ class AuthController extends GetxController {
     _isLoading.value = false;
   }
 
-  Future<void> logout() async {
+  Future logout() async {
     _isLoading.value = true;
 
-    await Prefs.remove('user_id');
-    await Prefs.remove('username');
+    await Prefs.remove('user');
     await Prefs.remove('token');
 
     _user.value = null;

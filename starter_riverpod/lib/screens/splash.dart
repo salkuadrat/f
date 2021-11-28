@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 
 import 'package:starter_riverpod/config/config.dart';
 import 'package:starter_riverpod/routes/routes.dart';
-import 'package:starter_riverpod/utils/navigation.dart';
+import 'package:starter_riverpod/utils/utils.dart';
 import 'package:starter_riverpod/widgets/logo.dart';
 
 class Splash extends StatefulWidget {
@@ -26,7 +26,7 @@ class _SplashState extends State<Splash> {
     // Do some necessary things opening Home Screen, such as:
     //
     // Loading data from Shared Preferences
-    // Loading initil data from backend
+    // Loading initial data from backend
     // Initializes states
     // etc..
 

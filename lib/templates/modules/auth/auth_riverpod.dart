@@ -18,19 +18,36 @@ export 'auth_service.dart';''');
 
 void _notifier(String project, String dir) {
   File('$dir/auth_notifier.dart').writeAsStringSync('''
+import 'dart:convert';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:$project/models/user.dart';
 import 'package:$project/modules/auth/auth.dart';
-import 'package:$project/utils/prefs.dart';
+import 'package:$project/utils/utils.dart';
 
 class AuthNotifier extends StateNotifier<AuthState> {
-
   final AuthService _service;
 
-  AuthNotifier(this._service) : super(AuthInitial());
+  AuthNotifier(this._service) : super(AuthInitial()) {
+    init();
+  }
 
-  Future<void> register(String username, String email, String password) async {
+  Future init() async {
+    final user = await Prefs.getString('user');
+    final token = await Prefs.getString('token');
+
+    if (user != null && token != null) {
+      state = Authenticated(
+        user: User.fromJson(jsonDecode(user)),
+        token: token,
+      );
+    } else {
+      state = NotAuthenticated();
+    }
+  }
+
+  Future register(String username, String email, String password) async {
     state = AuthLoading();
 
     try {
@@ -39,11 +56,13 @@ class AuthNotifier extends StateNotifier<AuthState> {
       if (data is Map && data.containsKey('token')) {
         final user = User.fromJson(data);
 
-        await Prefs.setInt('user_id', data['id']);
-        await Prefs.setString('username', data['username']);
+        await Prefs.setString('user', jsonEncode(user.toJson()));
         await Prefs.setString('token', data['token']);
 
-        state = Authenticated(user);
+        state = Authenticated(
+          user: user,
+          token: data['token'],
+        );
       } else {
         state = NotAuthenticated();
       }
@@ -52,7 +71,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
-  Future<void> login(String username, String password) async {
+  Future login(String username, String password) async {
     state = AuthLoading();
 
     try {
@@ -61,11 +80,13 @@ class AuthNotifier extends StateNotifier<AuthState> {
       if (data is Map && data.containsKey('token')) {
         final user = User.fromJson(data);
 
-        await Prefs.setInt('user_id', data['id']);
-        await Prefs.setString('username', data['username']);
+        await Prefs.setString('user', jsonEncode(user.toJson()));
         await Prefs.setString('token', data['token']);
 
-        state = Authenticated(user);
+        state = Authenticated(
+          user: user,
+          token: data['token'],
+        );
       } else {
         state = NotAuthenticated();
       }
@@ -74,11 +95,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
-  Future<void> logout() async {
+  Future logout() async {
     state = AuthLoading();
 
-    await Prefs.remove('user_id');
-    await Prefs.remove('username');
+    await Prefs.remove('user');
     await Prefs.remove('token');
 
     state = AuthInitial();
@@ -120,11 +140,15 @@ class AuthLoading extends AuthState {}
 
 class Authenticated extends AuthState {
   final User user;
+  final String token;
 
-  const Authenticated(this.user);
+  const Authenticated({
+    required this.user,
+    required this.token,
+  });
 
   @override
-  List<Object> get props => [user];
+  List<Object> get props => [user, token];
 }
 
 class NotAuthenticated extends AuthState {}

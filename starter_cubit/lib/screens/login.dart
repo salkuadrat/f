@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 import 'package:starter_cubit/modules/auth/auth.dart';
-import 'package:starter_cubit/utils/navigation.dart';
-import 'package:starter_cubit/utils/snackbar.dart';
+import 'package:starter_cubit/utils/utils.dart';
 import 'package:starter_cubit/widgets/buttons.dart';
 import 'package:starter_cubit/widgets/logo.dart';
 
@@ -20,6 +19,12 @@ class Login extends StatelessWidget {
     final auth = context.read<AuthCubit>();
     final username = _ucontroller.text;
     final password = _pcontroller.text;
+    final empty = username.isEmpty || password.isEmpty;
+
+    if (empty) {
+      context.snackbar('Wrong username or password.');
+      return;
+    }
 
     auth.login(username, password);
   }

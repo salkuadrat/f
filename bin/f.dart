@@ -57,6 +57,9 @@ void main(List<String> args) {
       case "l":
         logs();
         return;
+      case "m":
+        module(args);
+        return;
       case "r":
         run(args);
         return;

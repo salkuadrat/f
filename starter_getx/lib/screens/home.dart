@@ -6,7 +6,7 @@ import 'package:starter_getx/config/config.dart';
 import 'package:starter_getx/modules/auth/auth.dart';
 import 'package:starter_getx/modules/home/home.dart';
 import 'package:starter_getx/routes/routes.dart';
-import 'package:starter_getx/utils/snackbar.dart';
+import 'package:starter_getx/utils/utils.dart';
 
 class Home extends StatelessWidget {
   final HomeController home;

@@ -154,6 +154,8 @@ abstract class UsersEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class InitUsers extends UsersEvent {}
+
 class FetchUsers extends UsersEvent {}
 
 class RefreshUsers extends UsersEvent {

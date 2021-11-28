@@ -11,7 +11,7 @@ import 'package:$project/config/config.dart';
 import 'package:$project/modules/auth/auth.dart';
 import 'package:$project/modules/home/home.dart';
 import 'package:$project/routes/routes.dart';
-import 'package:$project/utils/snackbar.dart';
+import 'package:$project/utils/utils.dart';
 
 class Home extends StatelessWidget {
   final HomeController home;

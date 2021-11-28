@@ -20,6 +20,7 @@ void _notifier(String project, String dir) {
   File('$dir/users_notifier.dart').writeAsStringSync('''
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+
 import 'package:$project/modules/users/users.dart';
 
 class UsersNotifier extends StateNotifier<UsersState> {

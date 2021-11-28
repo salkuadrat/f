@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:starter_riverpod/config/config.dart';
-import 'package:starter_riverpod/utils/theme.dart';
+import 'package:starter_riverpod/utils/utils.dart';
 
 ThemeData appTheme = createTheme(
   brightness: Brightness.light,

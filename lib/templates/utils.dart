@@ -4,10 +4,19 @@ import 'dart:io';
 void utils(String project) {
   String dir = '$project/lib/utils';
 
+  _utils(project, dir);
   _navigation(project, dir);
   _prefs(project, dir);
   _snackbar(project, dir);
   _theme(project, dir);
+}
+
+void _utils(String project, String dir) {
+  File('$dir/utils.dart').writeAsStringSync('''
+export 'navigation.dart';
+export 'prefs.dart';
+export 'snackbar.dart';
+export 'theme.dart';''');
 }
 
 void _navigation(String project, String dir) {

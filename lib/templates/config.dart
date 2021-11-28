@@ -72,7 +72,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:$project/config/config.dart';
-import 'package:$project/utils/theme.dart';
+import 'package:$project/utils/utils.dart';
 
 ThemeData appTheme = createTheme(
   brightness: Brightness.light,

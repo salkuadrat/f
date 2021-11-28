@@ -1,11 +1,11 @@
-import 'dart:async';
+import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:starter_bloc/models/user.dart';
 import 'package:starter_bloc/modules/auth/auth.dart';
-import 'package:starter_bloc/utils/prefs.dart';
+import 'package:starter_bloc/utils/utils.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -14,6 +14,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthService _service;
 
   AuthBloc(this._service) : super(AuthInitial()) {
+    on<AuthStart>((event, emit) async {
+      await emit.onEach(_onStart(event), onData: emit);
+    });
+
     on<AuthRegister>((event, emit) async {
       await emit.onEach(_onRegister(event), onData: emit);
     });
@@ -25,6 +29,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthLogout>((event, emit) async {
       await emit.onEach(_onLogout(event), onData: emit);
     });
+
+    add(AuthStart());
   }
 
   void register(String username, String email, String password) {
@@ -46,6 +52,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     add(AuthLogout());
   }
 
+  Stream<AuthState> _onStart(AuthStart event) async* {
+    final user = await Prefs.getString('user');
+    final token = await Prefs.getString('token');
+
+    if (user != null && token != null) {
+      yield Authenticated(
+        user: User.fromJson(jsonDecode(user)),
+        token: token,
+      );
+    } else {
+      yield NotAuthenticated();
+    }
+  }
+
   Stream<AuthState> _onRegister(AuthRegister event) async* {
     yield AuthLoading();
 
@@ -59,11 +79,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (data is Map && data.containsKey('token')) {
         final user = User.fromJson(data);
 
-        await Prefs.setInt('user_id', data['id']);
-        await Prefs.setString('username', data['username']);
+        await Prefs.setString('user', jsonEncode(user.toJson()));
         await Prefs.setString('token', data['token']);
 
-        yield Authenticated(user);
+        yield Authenticated(
+          user: user,
+          token: data['token'],
+        );
       } else {
         yield NotAuthenticated();
       }
@@ -81,11 +103,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (data is Map && data.containsKey('token')) {
         final user = User.fromJson(data);
 
-        await Prefs.setInt('user_id', data['id']);
-        await Prefs.setString('username', data['username']);
+        await Prefs.setString('user', jsonEncode(user.toJson()));
         await Prefs.setString('token', data['token']);
 
-        yield Authenticated(user);
+        yield Authenticated(
+          user: user,
+          token: data['token'],
+        );
       } else {
         yield NotAuthenticated();
       }
@@ -97,8 +121,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> _onLogout(AuthLogout event) async* {
     yield AuthLoading();
 
-    await Prefs.remove('user_id');
-    await Prefs.remove('username');
+    await Prefs.remove('user');
     await Prefs.remove('token');
 
     yield AuthInitial();

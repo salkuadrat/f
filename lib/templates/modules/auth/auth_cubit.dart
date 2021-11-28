@@ -16,21 +16,36 @@ export 'auth_service.dart';''');
 
 void _cubit(String project, String dir) {
   File('$dir/auth_cubit.dart').writeAsStringSync('''
+import 'dart:convert';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:$project/models/user.dart';
-import 'package:$project/utils/prefs.dart';
+import 'package:$project/utils/utils.dart';
 
 import 'auth_service.dart';
 import 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  
   final AuthService _service;
 
   AuthCubit(this._service) : super(AuthInitial());
 
-  Future<void> register(String username, String email, String password) async {
+  Future init() async {
+    final user = await Prefs.getString('user');
+    final token = await Prefs.getString('token');
+
+    if (user != null && token != null) {
+      emit(Authenticated(
+        user: User.fromJson(jsonDecode(user)),
+        token: token,
+      ));
+    } else {
+      emit(NotAuthenticated());
+    }
+  }
+
+  Future register(String username, String email, String password) async {
     emit(AuthLoading());
 
     try {
@@ -39,11 +54,13 @@ class AuthCubit extends Cubit<AuthState> {
       if (data is Map && data.containsKey('token')) {
         final user = User.fromJson(data);
 
-        await Prefs.setInt('user_id', data['id']);
-        await Prefs.setString('username', data['username']);
+        await Prefs.setString('user', jsonEncode(user.toJson()));
         await Prefs.setString('token', data['token']);
 
-        emit(Authenticated(user));
+        emit(Authenticated(
+          user: user,
+          token: data['token'],
+        ));
       } else {
         emit(NotAuthenticated());
       }
@@ -52,7 +69,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> login(String username, String password) async {
+  Future login(String username, String password) async {
     emit(AuthLoading());
 
     try {
@@ -61,11 +78,13 @@ class AuthCubit extends Cubit<AuthState> {
       if (data is Map && data.containsKey('token')) {
         final user = User.fromJson(data);
 
-        await Prefs.setInt('user_id', data['id']);
-        await Prefs.setString('username', data['username']);
+        await Prefs.setString('user', jsonEncode(user.toJson()));
         await Prefs.setString('token', data['token']);
 
-        emit(Authenticated(user));
+        emit(Authenticated(
+          user: user,
+          token: data['token'],
+        ));
       } else {
         emit(NotAuthenticated());
       }
@@ -74,16 +93,16 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> logout() async {
+  Future logout() async {
     emit(AuthLoading());
 
-    await Prefs.remove('user_id');
-    await Prefs.remove('username');
+    await Prefs.remove('user');
     await Prefs.remove('token');
 
     emit(AuthInitial());
   }
-}''');
+}
+''');
 }
 
 void _state(String project, String dir) {
@@ -105,11 +124,15 @@ class AuthLoading extends AuthState {}
 
 class Authenticated extends AuthState {
   final User user;
+  final String token;
 
-  const Authenticated(this.user);
+  const Authenticated({
+    required this.user,
+    required this.token,
+  });
 
   @override
-  List<Object> get props => [user];
+  List<Object> get props => [user, token];
 }
 
 class NotAuthenticated extends AuthState {}

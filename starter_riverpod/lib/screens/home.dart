@@ -6,8 +6,7 @@ import 'package:starter_riverpod/config/config.dart';
 import 'package:starter_riverpod/modules/auth/auth.dart';
 import 'package:starter_riverpod/modules/home/home.dart';
 import 'package:starter_riverpod/routes/routes.dart';
-import 'package:starter_riverpod/utils/navigation.dart';
-import 'package:starter_riverpod/utils/snackbar.dart';
+import 'package:starter_riverpod/utils/utils.dart';
 
 class Home extends ConsumerWidget {
   const Home({Key? key}) : super(key: key);

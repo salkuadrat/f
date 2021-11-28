@@ -8,6 +8,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
 import 'package:$project/config/config.dart';
+import 'package:$project/modules/auth/auth.dart';
 import 'package:$project/routes/routes.dart';
 import 'package:$project/widgets/logo.dart';
 
@@ -31,13 +32,16 @@ class _SplashState extends State<Splash> {
     // Do some necessary things opening Home Screen, such as:
     //
     // Loading data from Shared Preferences
-    // Loading initil data from backend
+    // Loading initial data from backend
     // Initializes states
     // etc..
 
     // dummy delay to show splash screen
     // remove this in real application
     await Future.delayed(const Duration(seconds: 2));
+
+    // check Authentication status
+    await Get.find<AuthController>().init();
 
     // Show Home Screen
     Get.offNamed(Routes.home);

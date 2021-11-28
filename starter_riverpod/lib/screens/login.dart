@@ -3,8 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
 import 'package:starter_riverpod/modules/auth/auth.dart';
-import 'package:starter_riverpod/utils/navigation.dart';
-import 'package:starter_riverpod/utils/snackbar.dart';
+import 'package:starter_riverpod/utils/utils.dart';
 import 'package:starter_riverpod/widgets/buttons.dart';
 import 'package:starter_riverpod/widgets/logo.dart';
 
@@ -20,6 +19,12 @@ class Login extends ConsumerWidget {
     final auth = ref.read(authProvider.notifier);
     final username = _ucontroller.text;
     final password = _pcontroller.text;
+    final empty = username.isEmpty || password.isEmpty;
+
+    if (empty) {
+      context.snackbar('Wrong username or password.');
+      return;
+    }
 
     await auth.login(username, password);
 

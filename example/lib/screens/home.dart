@@ -6,8 +6,7 @@ import 'package:example/config/config.dart';
 import 'package:example/modules/auth/auth.dart';
 import 'package:example/modules/home/home.dart';
 import 'package:example/routes/routes.dart';
-import 'package:example/utils/navigation.dart';
-import 'package:example/utils/snackbar.dart';
+import 'package:example/utils/utils.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 import 'package:starter_cubit/config/config.dart';
+import 'package:starter_cubit/modules/auth/auth.dart';
 import 'package:starter_cubit/routes/routes.dart';
-import 'package:starter_cubit/utils/navigation.dart';
+import 'package:starter_cubit/utils/utils.dart';
 import 'package:starter_cubit/widgets/logo.dart';
 
 class Splash extends StatefulWidget {
@@ -26,13 +28,16 @@ class _SplashState extends State<Splash> {
     // Do some necessary things opening Home Screen, such as:
     //
     // Loading data from Shared Preferences
-    // Loading initil data from backend
+    // Loading initial data from backend
     // Initializes states
     // etc..
 
     // dummy delay to show splash screen
     // remove this in real application
     await Future.delayed(const Duration(seconds: 2));
+
+    // check Authentication status
+    await context.read<AuthCubit>().init();
 
     // Show Home Screen
     context.replace(Routes.home);
